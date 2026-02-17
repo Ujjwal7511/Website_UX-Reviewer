@@ -45,10 +45,8 @@ function App() {
 
         <Route path="/status" element={<Status />} />
 
-        <Route 
-          path="/review" 
-          element={auth.isAuthenticated ? <Review /> : <Navigate to="/login" />} 
-        />
+       
+<Route path="/review" element={localStorage.getItem('token') ? <Review /> : <Navigate to="/login" />} />
 
         <Route path="*" element={<Home />} />
       </Routes>
