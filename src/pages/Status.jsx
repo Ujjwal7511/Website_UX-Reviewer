@@ -8,7 +8,7 @@ export default function Status() {
   useEffect(() => {
     async function fetchStatus() {
       try {
-        const response = await fetch('/api/status');
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/status`);
         const data = await response.json();
         setStatus(data);
       } catch (e) {
