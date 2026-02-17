@@ -1,5 +1,5 @@
 // Use relative path so Vite dev server proxy (vite.config.js) forwards requests to the backend.
-const API_BASE = `${import.meta.env.VITE_API_URL}api`.replace(/([^:]\/)\/+/g, '$1');
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '') + '/api';
 
 async function parseErrorResponse(res) {
   const ct = res.headers.get('content-type') || '';
