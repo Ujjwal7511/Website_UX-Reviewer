@@ -8,7 +8,7 @@ export default function Status() {
   useEffect(() => {
     async function fetchStatus() {
       try {
-        const response = await fetch("https://website-ux-reviewer-production.up.railway.app/api/status");
+        const response = await fetch("https://websiteux-reviewer-production.up.railway.app/api/status");
         const data = await response.json();
         setStatus(data);
       } catch (e) {
