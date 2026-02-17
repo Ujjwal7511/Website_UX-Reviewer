@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../services/api';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -21,7 +20,25 @@ export default function Login() {
     setLoading(true);
 
     try {
-      await login(email, password);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+      
+      if (!res.ok) {
+        throw new Error(data.message || 'Login failed. Please try again.');
+      }
+
+      // Store token if returned
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+
       // Redirect to home after successful login
       navigate('/home');
     } catch (e) {
