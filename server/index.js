@@ -28,7 +28,9 @@ const PORT = process.env.PORT || 3001;
 // JWT Secret - use environment variable or default
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-key-change-in-production';
 
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json({ limit: '10mb' }));
 
 // Auth middleware to protect routes
